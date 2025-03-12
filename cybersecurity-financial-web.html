@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortaleciendo la Ciberseguridad del Sistema Financiero de EE.UU.</title>
+    <style>
+        /* Variables globales */
+        :root {
+            --primary-color: #0d4a6f;
+            --secondary-color: #1a8bc5;
+            --accent-color: #ff6b35;
+            --light-bg: #f5f9fc;
+            --dark-bg: #0a2c42;
+            --text-color: #333;
+            --light-text: #fff;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.2rem;
+            color: var(--light-text);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Hero section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(13, 74, 111, 0.8), rgba(10, 44, 66, 0.9)), url('/api/placeholder/1200/700') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light-text);
+            padding-top: 60px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--light-text);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Book info section */
+        .book-info {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .book-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .book-cover {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .book-cover img {
+            max-width: 100%;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-radius: 8px;
+        }
+        
+        .book-details {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .author-info {
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-pic {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            background-color: #ddd;
+            overflow: hidden;
+        }
+        
+        /* Key sections */
+        .key-sections {
+            padding: 5rem 0;
+            background-color: var(--light-bg);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            margin: 0.5rem;
+            background-color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Stats section */
+        .stats {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 2rem;
+        }
+        
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+            padding: 1.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Chapters preview */
+        .chapters {
+            padding: 5rem 0;
+        }
+        
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .chapter-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .chapter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .chapter-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+        }
+        
+        .chapter-header h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .chapter-content {
+            padding: 1.5rem;
+        }
+        
+        /* About author */
+        .about-author {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .author-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .author-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .author-image img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        
+        .author-bio {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        /* Call to action */
+        .cta {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-btn {
+            background-color: var(--accent-color);
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            margin-top: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-col h3 {
+            color: var(--light-text);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--light-text);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            max-width: 600px;
+            width: 90%;
+            border-radius: 8px;
+            padding: 2rem;
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Responsive Menu */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 60px);
+                background-color: var(--primary-color);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>Ciberseguridad Financiera</h1>
+            </div>
+            <div class="menu-toggle">☰</div>
+            <ul class="nav-links">
+                <li><a href="#book">El Libro</a></li>
+                <li><a href="#sections">Contenido</a></li>
+                <li><a href="#chapters">Capítulos</a></li>
+                <li><a href="#author">Autor</a></li>
+                <li><a href="#contact" class="btn">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Fortaleciendo la Ciberseguridad del Sistema Financiero de EE.UU.</h1>
+            <p>Implementación de Soluciones de Continuidad y Resiliencia con IA y Computación en la Nube</p>
+            <a href="#book" class="btn">Descubrir el Libro</a>
+        </div>
+    </section>
+    
+    <!-- Book Info Section -->
+    <section id="book" class="book-info">
+        <div class="container book-container">
+            <div class="book-cover">
+                <img src="/api/placeholder/400/600" alt="Portada del libro Ciberseguridad en el Sistema Financiero" />
+            </div>
+            <div class="book-details">
+                <h2>Una guía práctica para proteger el sector financiero</h2>
+                <p>Este libro nace de mi experiencia de más de una década desarrollando soluciones de ciberseguridad y continuidad de negocio para instituciones financieras, con el objetivo de compartir metodologías prácticas que pueden fortalecer significativamente la resiliencia del sector financiero de EE.UU.</p>
+                <p>La intersección de la ciberseguridad, la continuidad de negocio y tecnologías emergentes como la Inteligencia Artificial y la Computación en la Nube representa una oportunidad única para transformar nuestro enfoque de protección de los activos financieros.</p>
+                <div class="author-info">
+                    <div class="author-pic">
+                        <img src="/api/placeholder/60/60" alt="José Luis Moscoso Naranjo" />
+                    </div>
+                    <div>
+                        <strong>José Luis Moscoso Naranjo</strong>
+                        <p>Experto en Ciberseguridad Financiera</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Key Sections -->
+    <section id="sections" class="key-sections">
+        <div class="container">
+            <div class="section-title">
+                <h2>Aspectos Clave del Libro</h2>
+                <p>Explorando las áreas fundamentales de la ciberseguridad en el sector financiero</p>
+            </div>
+            
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="tab1">Fundamentos</button>
+                <button class="tab-btn" data-tab="tab2">Metodología</button>
+                <button class="tab-btn" data-tab="tab3">Tecnologías</button>
+                <button class="tab-btn" data-tab="tab4">Implementación</button>
+                <button class="tab-btn" data-tab="tab5">Casos Prácticos</button>
+            </div>
+            
+            <div id="tab1" class="tab-content active">
+                <h3>Fundamentos y Contexto</h3>
+                <p>El libro comienza estableciendo una base sólida de conocimiento sobre el ecosistema de ciberseguridad en el sector financiero de EE.UU., cubriendo temas como:</p>
+                <ul>
+                    <li>Desafíos actuales de ciberseguridad para instituciones financieras</li>
+                    <li>Marco regulatorio: GLBA, BSA y estándares internacionales</li>
+                    <li>Evolución de las amenazas cibernéticas en el sector financiero</li>
+                    <li>Costos asociados con brechas de seguridad y tiempo de inactividad</li>
+                    <li>Principios fundamentales de la continuidad del negocio</li>
+                    <li>La intersección entre ciberseguridad y continuidad del negocio</li>
+                </ul>
+            </div>
+            
+            <div id="tab2" class="tab-content">
+                <h3>Metodología de Implementación</h3>
+                <p>Esta sección presenta metodologías avanzadas para analizar el impacto empresarial y gestionar riesgos:</p>
+                <ul>
+                    <li>Análisis de Impacto Empresarial (BIA) y Evaluación de Riesgos</li>
+                    <li>Metodología avanzada para BIA en instituciones financieras</li>
+                    <li>Automatización del proceso BIA mediante aprendizaje automático</li>
+                    <li>Clasificación de riesgos con machine learning y computación en la nube</li>
+                    <li>Modelos predictivos para clasificación de riesgos</li>
+                    <li>Diseño e implementación de planes de continuidad y recuperación basados en la nube</li>
+                </ul>
+            </div>
+            
+            <div id="tab3" class="tab-content">
+                <h3>Tecnologías Aplicadas</h3>
+                <p>Exploramos cómo las tecnologías emergentes están transformando la seguridad financiera:</p>
+                <ul>
+                    <li>Inteligencia Artificial y Machine Learning en la detección de amenazas</li>
+                    <li>Fundamentos de IA aplicada a la ciberseguridad financiera</li>
+                    <li>Modelos de Machine Learning para detección de anomalías</li>
+                    <li>Computación en la nube (AWS) como plataforma de seguridad y resiliencia</li>
+                    <li>Servicios de AWS relevantes para la ciberseguridad financiera</li>
+                    <li>Arquitecturas de referencia para alta disponibilidad</li>
+                </ul>
+            </div>
+            
+            <div id="tab4" class="tab-content">
+                <h3>Implementación Práctica</h3>
+                <p>Estrategias concretas para prevenir, monitorear y responder a incidentes:</p>
+                <ul>
+                    <li>Prevención y monitoreo continuo con sistemas impulsados por IA</li>
+                    <li>Detección de desviaciones del comportamiento normal</li>
+                    <li>Adaptación a nuevas amenazas mediante aprendizaje continuo</li>
+                    <li>Respuesta a incidentes y gestión de crisis</li>
+                    <li>Protocolos avanzados de respuesta a incidentes</li>
+                    <li>Automatización de la identificación y mitigación de daños</li>
+                </ul>
+            </div>
+            
+            <div id="tab5" class="tab-content">
+                <h3>Casos de Estudio y Aplicaciones Futuras</h3>
+                <p>Ejemplos reales de implementación y visión hacia el futuro:</p>
+                <ul>
+                    <li>Implementación en un banco regional: desafíos y soluciones</li>
+                    <li>Transformando la resiliencia en una cooperativa de crédito</li>
+                    <li>Mejora de la continuidad del negocio en procesadores de pagos</li>
+                    <li>El papel de la computación cuántica en la seguridad financiera</li>
+                    <li>Integración con tecnologías emergentes: blockchain y DeFi</li>
+                    <li>Amenazas en evolución y contramedidas adaptativas</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <h2>Estadísticas Clave de Ciberseguridad 2024</h2>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">$9.5T</div>
+                    <p>Costo global del cibercrimen para 2024</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">66%</div>
+                    <p>Organizaciones afectadas por ransomware en 2023</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">21h+</div>
+                    <p>Tiempo promedio de inactividad por ciberataques</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$4.5M</div>
+                    <p>Costo promedio de recuperación por incidente</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Chapters Preview -->
+    <section id="chapters" class="chapters">
+        <div class="container">
+            <div class="section-title">
+                <h2>Capítulos Destacados</h2>
+                <p>Un vistazo a los contenidos más relevantes del libro</p>
+            </div>
+            
+            <div class="chapters-grid">
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Capítulo 6</h3>
+                        <p>Inteligencia Artificial y Machine Learning</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Explora cómo la IA está revolucionando la detección de amenazas con modelos de aprendizaje profundo para análisis predictivo y algoritmos de detección temprana personalizados para instituciones financieras.</p>
+                        <a href="#" class="open-modal" data-modal="modal-ch6">Leer más</a>
+                    </div>
+                </div>
+                
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Capítulo 7</h3>
+                        <p>Computación en la Nube (AWS)</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Descubre cómo AWS se ha convertido en una plataforma fundamental para la seguridad y resiliencia, con arquitecturas de referencia para alta disponibilidad y estrategias de optimización de costos.</p>
+                        <a href="#" class="open-modal" data-modal="modal-ch7">Leer más</a>
+                    </div>
+                </div>
+                
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Capítulo 9</h3>
+                        <p>Prevención y Monitoreo Continuo</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Sistemas de monitoreo en tiempo real impulsados por IA que detectan desviaciones del comportamiento normal y se adaptan continuamente a nuevas amenazas mediante aprendizaje constante.</p>
+                        <a href="#" class="open-modal" data-modal="modal-ch9">Leer más</a>
+                    </div>
+                </div>
+                
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Capítulo 10</h3>
+                        <p>Respuesta a Incidentes</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Protocolos avanzados de respuesta y gestión de crisis que automatizan la identificación y mitigación de daños, reduciendo significativamente el tiempo de inactividad post-incidente.</p>
+                        <a href="#" class="open-modal" data-modal="modal-ch10">Leer más</a>
+                    </div>
+                </div>
+                
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Capítulo 12</h3>
+                        <p>Casos de Estudio</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Implementaciones reales en bancos regionales, cooperativas de crédito y procesadores de pagos, con análisis detallado de desafíos, soluciones y resultados medibles.</p>
+                        <a href="#" class="open-modal" data-modal="modal-ch12">Leer más</a>
+                    </div>
+                </div>
+                
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3>Capítulo 13</h3>
+                        <p>Tendencias Futuras</p>
+                    </div>
+                    <div class="chapter-content">
+                        <p>Una mirada hacia el futuro de la ciberseguridad financiera, incluyendo computación cuántica, blockchain, DeFi y la próxima generación de herramientas de continuidad basadas en IA.</p>
+                        <a href="#" class="open-modal" data-modal="modal-ch13">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Author -->
+    <section id="author" class="about-author">
+        <div class="container author-container">
+            <div class="author-image">
+                <img src="/api/placeholder/400/400" alt="José Luis Moscoso Naranjo" />
+            </div>
+            <div class="author-bio">
+                <h2>Sobre el Autor</h2>
+                <p>José Luis Moscoso Naranjo es un experto reconocido en ciberseguridad y continuidad de negocio para el sector financiero, con más de una década de experiencia desarrollando soluciones para instituciones de diversos tamaños.</p>
+                <p>Su enfoque práctico y orientado a resultados ha ayudado a numerosas organizaciones financieras a fortalecer sus defensas y mejorar significativamente su capacidad de recuperación ante incidentes.</p>
+                <p>Este libro representa la culminación de su experiencia, ofreciendo metodologías probadas y estrategias innovadoras que pueden implementarse de manera práctica en instituciones de todos los tamaños.</p>
+                <p><em>"Con amor para Benjamín, Julián y Nicolás..."</em></p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call to Action -->
+    <section id="contact" class="cta">
+        <div class="container">
+            <h2>Fortalezca la Ciberseguridad de su Institución Financiera</h2>
+            <p>Descubra cómo implementar soluciones avanzadas de continuidad y resiliencia con IA y computación en la nube.</p>
+            <a href="#" class="btn cta-btn open-modal" data-modal="modal-contact">Contactar al Autor</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>El Libro</h3>
+                    <ul class="footer-links">
+                        <li><a href="#book">Descripción General</a></li>
+                        <li><a href="#sections">Contenido</a></li>
+                        <li><a href="#chapters">Capítulos</a></li>
+                        <li><a href="#">Reseñas</a></li>
+                        <li><a href="#">Dónde Comprarlo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>El Autor</h3>
+                    <ul class="footer-links">
+                        <li><a href="#author">Biografía</a></li>
+                        <li><a href="#">Otros Trabajos</a></li>
+                        <li><a href="#">Conferencias</a></li>
+                        <li><a href="#">Eventos</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Recursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog de Ciberseguridad</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Casos de Estudio</a></li>
+                        <li><a href="#">Herramientas</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Ciberseguridad</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Últimas Amenazas</a></li>
+                        <li><a href="#">Mejores Prácticas</a></li>
+                        <li><a href="#">Regulación GLBA</a></li>
+                        
